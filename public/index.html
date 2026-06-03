@@ -336,7 +336,7 @@ async function callAI(prompt, max_tokens){
       'anthropic-version':'2023-06-01',
       'anthropic-dangerous-direct-browser-access':'true'
     },
-    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:max_tokens,messages:[{role:'user',content:prompt}]})
+    body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:max_tokens,messages:[{role:'user',content:prompt}]})
   });
   const data=await res.json();
   if(data.error)throw new Error(data.error.message||'Error de API');
