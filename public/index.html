@@ -760,7 +760,7 @@ Dolor: [el dolor principal]
 Ángulo: [el ángulo de entrada sugerido]
 Señal clave: [la señal más relevante]`;
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:300,messages:[{role:'user',content:prompt}]})});
+    const res=await fetch('/.netlify/functions/ai-proxy',{method:'POST',headers:{'Content-Type':'application/json',},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:300,messages:[{role:'user',content:prompt}]})});
     const data=await res.json();
     out.className='dolor-output';out.textContent=data.content?.map(b=>b.text||'').join('')||'Error.';
   }catch(e){out.className='dolor-output';out.textContent='Error. Verificá la API key.';}
@@ -832,7 +832,7 @@ Tipo: ${tL}
 ${contexto?'Contexto: '+contexto:''}
 Solo el email.`;
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})});
+    const res=await fetch('/.netlify/functions/ai-proxy',{method:'POST',headers:{'Content-Type':'application/json',},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})});
     const data=await res.json();
     out.className='email-output';out.textContent=data.content?.map(b=>b.text||'').join('')||'Error.';
   }catch(e){out.className='email-output';out.textContent='Error de conexión.';}
